@@ -9,7 +9,7 @@ export class UserService {
   constructor(private db: DatabaseService) {}
   async create(createUserDto: CreateUserDto): Promise<Partial<User>> {
     const type: string =
-      createUserDto.type_user == 'juridica'
+      createUserDto.type_user == 'juridico'
         ? createUserDto.type_user
         : 'fisica';
 
@@ -34,7 +34,7 @@ export class UserService {
 
   async findAll(): Promise<Partial<User[]>> {
     return await this.db.user
-      .findMany({ include: { type_user: true } })
+      .findMany({ include: { type_user: true }, orderBy: { name: 'asc' } })
       .then((users) => {
         if (users && users.length > 0) return users;
         throw new NotFoundException('Usuários não encontrados');
@@ -65,8 +65,9 @@ export class UserService {
     id: number,
     updateUserDto: UpdateUserDto,
   ): Promise<Partial<User>> {
+    console.log(updateUserDto);
     const type: string =
-      updateUserDto.type_user == 'juridica'
+      updateUserDto.type_user == 'juridico'
         ? updateUserDto.type_user
         : 'fisica';
 
