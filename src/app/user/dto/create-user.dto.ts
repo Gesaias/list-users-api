@@ -1,1 +1,15 @@
-export class CreateUserDto {}
+import { IsString } from 'class-validator';
+
+export class CreateUserDto {
+  @IsString()
+  name: string;
+
+  @IsString()
+  email: string;
+
+  @IsString()
+  telefone: string;
+
+  @IsString()
+  type_user: string;
+}

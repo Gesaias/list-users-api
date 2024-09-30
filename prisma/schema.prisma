@@ -31,23 +31,15 @@ model User {
 }
 
 model TypeUser {
-  id      String     @id @default(uuid())
-  type    ETypeUser?
-  user_id Int        @unique
+  id      Int     @id @default(autoincrement())
+  type    String?
+  user_id Int     @unique
 
   user User @relation(fields: [user_id], references: [id])
 
   created_at DateTime @default(dbgenerated("CURRENT_TIMESTAMP(6)")) @db.Timestamp(6)
   updated_at DateTime @updatedAt
-  userId     String
 
   @@map("type_users")
-  @@schema("public")
-}
-
-enum ETypeUser {
-  juridica
-  fisica
-
   @@schema("public")
 }
