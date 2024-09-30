@@ -1,0 +1,26 @@
+version: "8"
+
+networks:
+  api_default:
+
+volumes:
+  data:
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres-db
+    restart: always
+    ports:
+      - 5432:5432
+    expose:
+    - 5432
+    environment:
+     POSTGRES_USER: suporte
+     POSTGRES_PASSWORD: suporte
+     POSTGRES_DB: api
+    networks:
+    - api_default
+    volumes:
+    - data:/var/lib/postgresql/data
+
