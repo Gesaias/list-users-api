@@ -65,7 +65,6 @@ export class UserService {
     id: number,
     updateUserDto: UpdateUserDto,
   ): Promise<Partial<User>> {
-    console.log(updateUserDto);
     const type: string =
       updateUserDto.type_user == 'juridico'
         ? updateUserDto.type_user
